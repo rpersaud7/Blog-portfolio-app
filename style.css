@@ -1,0 +1,124 @@
+@media screen and (min-width: 1200px){
+
+}
+@media screen and (min-width: 768px) and (max-width: 979px){
+  ul li a{
+
+  }
+}
+@media screen and (max-width: 767px) {
+  p{
+    line-height: 30px;
+  }
+}
+@media screen and (max-width: 480px) {
+
+}
+
+.bluebg{
+  background-color: #00688B;
+}
+
+.menubutton{
+  border: 5px solid black;
+  text-decoration:none;
+  color:black;
+  background-color: lightblue;
+  padding: 15px 25px;  /*left side is top-bottom size, right side is left-right size. If specifying all, top right bottom left. Works for margins too*/
+  margin: 10px;
+}
+
+.center{
+  text-align: center;
+}
+.left{
+  text-align: left;
+  display: inline-block;
+}
+.right{
+  text-align: right;
+  display: inline-block;
+}
+/* The side navigation menu */
+.sidenav {
+    height: 100%; /* 100% Full-height */
+    width: 0; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Stay on top */
+    top: 0;
+    left: 0;
+    background-color: #111; /* Black*/
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 60px; /* Place content 60px from the top */
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+}
+
+/* The navigation menu links */
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 22px;
+    color: #818181;
+    display: block;
+    transition: 0.3s
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover, .offcanvas a:focus{
+    color: #f1f1f1;
+}
+
+/* Position and style the close button (top right corner) */
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 7px;
+    font-size: 12px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+}
+h1{
+  text-align: center;
+  color:lightblue;
+  font-family:Tahoma;
+  margin: 0 0 0 10px;
+}
+h2{
+  color: white;
+}
+h3{
+  color: white;
+  text-align: left;
+  margin-left: 75px;
+}
+ul{
+  font-size: 16px;
+  line-height: 75px;
+}
+ul li{
+  display: inline;
+}
+img{
+  margin: 10px;
+  border: 3px solid black;
+}
+p{
+  color: white;
+  margin: 50px;
+  line-height: 20px;
+}
+a:link, a:visited{
+  border: 5px solid black;
+  text-decoration:none;
+  color:white;
+  padding: 15px 25px;  /*left side is top-bottom size, right side is left-right size. If specifying all, top right bottom left. Works for margins too*/
+  margin: 10px;
+}
+a:hover, a:active{
+  text-decoration: underline;
+  background-color: darkgrey;
+}
