@@ -73,12 +73,9 @@ app.post('/blogpost', function(req,res){
      done();
      console.log(err);
      return res.status(500).json({success: false, data: err});
-   }
+    }
 
     client.query('INSERT INTO blogpost (title, content) values (btitle, bcontent)')
-  }}));
 
-
-function loadcommentposter(){
-
-}
+  });
+});
