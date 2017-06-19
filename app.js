@@ -1,21 +1,22 @@
 var express = require('express');
-var bodyParser = require('body-parser');
 var app = express();
+var bodyParser = require('body-parser');
+var Sequelize = require('sequelize');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended:true
 }));
 
-var pg = require('pg');
-var conString = 'postgres://postgres:talesh100996@localhost/blogpost';
-var client = new pg.Client(conString);
-client.connect();
-//create tables for blog posts and comments, but only once
-var query= client.query( 'CREATE TABLE IF NOT EXISTS entries(title VARCHAR(255) NOT NULL, content TEXT)');
-  query.on('end', () => { client.end(); });
-// var query2= client.query('CREATE TABLE IF NOT EXISTS comments(id SERIAL NOT NULL PRIMARY KEY, first_name VARCHAR(255),last_name VARCHAR(255) NOT NULL,email VARCHAR(255) NOT NULL UNIQUE,created_at DATETIME NOT NULL DEFAULT');
-//   query.on('end', () => { client.end(); });
-//set the view engine to hbs for handlebars, ejs for ejs, or pug for pug
+//initialize connection with sequelize then test connection
+const sequelize = new Sequelize('postgres://postgres:1029384756@localhost:5432/blogpost');
+sequelize.authenticate().then(() => {
+    console.log('Connection has been established successfully.');
+  })
+  .catch(err => {
+    console.error('Unable to connect to the database:', err);
+  });
+
+
 app.set('view engine', 'ejs');
 //sets this application to look at `my-views` next to the running application
 app.set('views', './views');
@@ -23,6 +24,7 @@ app.set('views', './views');
 //for error cannot find module ejs, just ndm install ejs
 
 app.use(express.static(__dirname));
+
 
 app.get('/home', function(req, res){
   //renders the `home-page` view in `views`
@@ -63,19 +65,17 @@ function closeNav() {
   document.getElementById("mySidenav").style.width = "0";
 }
 
-app.post('/blogpost', function(req,res){
-  //parse html form and save to database, both title and content
-  var btitle = req.body.title;
-  var bcontent = req.body.content;
-  pg.connect('conString', function(err, client, done){
-       // Handle connection errors
-   if(err) {
-     done();
-     console.log(err);
-     return res.status(500).json({success: false, data: err});
-    }
-
-    client.query('INSERT INTO blogpost (title, content) values (btitle, bcontent)')
-
+//adds blog post to database
+function newBlogPost(){
+  var title = document.getElementById('title').value;
+  var content = document.getElementById('content').value;
+  var Entries= sequelize.define('entries', {
+    title: Sequelize.STRING,
+    content: Sequelize.STRING
+  }).sync().then(function(){
+    Entries.create({
+      title: title,
+      content: content
+    });
   });
-});
+}
