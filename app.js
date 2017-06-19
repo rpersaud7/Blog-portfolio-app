@@ -77,5 +77,6 @@ function newBlogPost(){
       title: title,
       content: content
     });
+    console.log("Success!");
   });
 }
