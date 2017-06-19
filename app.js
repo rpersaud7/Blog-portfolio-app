@@ -10,21 +10,28 @@ app.use(bodyParser.urlencoded({
 //initialize connection with sequelize then test connection
 const sequelize = new Sequelize('postgres://postgres:1029384756@localhost:5432/blogpost');
 sequelize.authenticate().then(() => {
-    console.log('Connection has been established successfully.');
-  })
-  .catch(err => {
-    console.error('Unable to connect to the database:', err);
-  });
+  console.log('Connection has been established successfully.');
+})
+.catch(err => {
+  console.error('Unable to connect to the database:', err);
+});
 
+var Entries= sequelize.define('entries',
+{
+  id: {
+        type: Sequelize.INTEGER,
+        autoIncrement: true,
+        primaryKey: true
+      },
+  title: Sequelize.STRING,
+  content: Sequelize.STRING
+});
 
 app.set('view engine', 'ejs');
 //sets this application to look at `my-views` next to the running application
 app.set('views', './views');
 
-//for error cannot find module ejs, just ndm install ejs
-
 app.use(express.static(__dirname));
-
 
 app.get('/home', function(req, res){
   //renders the `home-page` view in `views`
@@ -65,18 +72,20 @@ function closeNav() {
   document.getElementById("mySidenav").style.width = "0";
 }
 
-//adds blog post to database
-function newBlogPost(){
-  var title = document.getElementById('title').value;
-  var content = document.getElementById('content').value;
-  var Entries= sequelize.define('entries', {
-    title: Sequelize.STRING,
-    content: Sequelize.STRING
-  }).sync().then(function(){
+app.get('/blogpost', function(req,res){
+  res.render('blogpost');
+});
+
+app.post('/blogpost', function(req, res){
+  //adds blog post to database
+  var title = req.body.title;
+  var content = req.body.content;
+  Entries.sync().then(function(){
     Entries.create({
       title: title,
       content: content
     });
     console.log("Success!");
   });
-}
+  Entries.sync();
+});
