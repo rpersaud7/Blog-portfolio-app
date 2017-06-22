@@ -10,7 +10,14 @@ app.use(bodyParser.urlencoded({
 
 
 //initialize connection with sequelize then test connection
-const sequelize = new Sequelize('postgres://postgres:1029384756@localhost:5432/blogpost');
+var sequelize;
+
+if(process.env.DATABASE_URL) {
+  sequelize = new Sequelize(process.env.DATABASE_URL);
+} else {
+  sequelize = new Sequelize(config.database, config.username, config.password, config);
+}
+
 sequelize.authenticate().then(() => {
   console.log('Connection has been established successfully.');
 })
@@ -75,8 +82,8 @@ app.get('*', function(req,res){
   res.status(404).send('Page not found');
 });
 
-app.listen(3000, function() {
-  console.log('Listening on port 3000')
+app.listen(process.env.PORT || 3000, function(){
+  console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
 });
 
 /* Set the width of the side navigation to 250px */
