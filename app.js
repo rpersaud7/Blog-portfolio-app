@@ -9,7 +9,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 
-//initialize connection with sequelize then test connection
+//initialize connection with sequelize then test connection, notify through console success/fail
 const sequelize = new Sequelize('postgres://postgres:1029384756@localhost:5432/blogpost');
 sequelize.authenticate().then(() => {
   console.log('Connection has been established successfully.');
@@ -18,6 +18,7 @@ sequelize.authenticate().then(() => {
   console.error('Unable to connect to the database:', err);
 });
 
+//create and initialize table if does not already exist
 var Entries= sequelize.define('entries',
 {
   id: {
@@ -29,12 +30,14 @@ var Entries= sequelize.define('entries',
   content: Sequelize.STRING
 });
 
-var bentries = ["no"];
+var bentries = ["no"];  //array for table contents, loaded with dummy value for bug reporting
 
+//populates array above with all blog posts already on the database on visiting the page
 Entries.findAll().then(entries => {
   bentries = entries;
 });
 
+//ejs template usage
 app.set('view engine', 'ejs');
 //sets this application to look at `my-views` next to the running application
 app.set('views', './views');
@@ -93,6 +96,10 @@ function closeNav() {
 //   event.preventDefault();
 //   $.ajax({
 //     url: 'http://localhost:3000/blog',
-//
-//   })
+//     data: entries,
+//     method: 'POST'
+//   }).then(function(response){
+  //   //do stuff with response
+  //   $('body').append(response);
+  // });
 // });
