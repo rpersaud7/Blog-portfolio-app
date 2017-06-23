@@ -3,6 +3,7 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var Sequelize = require('sequelize');
+var Entries;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended:true
@@ -14,7 +15,7 @@ const sequelize = new Sequelize(conString);
 sequelize.authenticate().then(() => {
   console.log('Connection has been established successfully.');
   //create and initialize table if does not already exist
-  var Entries= sequelize.define('entries',
+  Entries= sequelize.define('entries',
   {
     id: {
       type: Sequelize.INTEGER,
