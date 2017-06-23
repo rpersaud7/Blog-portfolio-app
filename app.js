@@ -51,7 +51,7 @@ app.set('views', './views');
 
 app.use(express.static(__dirname));
 
-app.get('/home', function(req, res){
+app.get('/', function(req, res){
   //renders the `home-page` view in `views`
   res.render('home-page');
 });
