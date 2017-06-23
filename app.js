@@ -3,7 +3,6 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var Sequelize = require('sequelize');
-var Entries;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended:true
@@ -19,9 +18,9 @@ sequelize.authenticate().then(() => {
   console.error('Unable to connect to the database:', err);
 });
 
-module.exports = function(sequelize, DataTypes) {
   //create and initialize table if does not already exist
-  return Entries= sequelize.define('entries',
+  if(SELECT to_regclass('entries') == null){
+  queryInterface.createTable('entries',
     {
       id: {
         type: Sequelize.INTEGER,
@@ -31,7 +30,7 @@ module.exports = function(sequelize, DataTypes) {
       title: Sequelize.STRING,
       content: Sequelize.STRING
     });
-}
+  }
 
 var bentries = ["no"];  //array for table contents, loaded with dummy value for bug reporting
 
