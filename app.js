@@ -25,8 +25,14 @@ const Entries = sequelize.define('entries', {
     autoIncrement: true,
     primaryKey: true
   },
-  title: Sequelize.String,
-  content: Sequelize.String
+  title: {
+    Sequelize.STRING,
+    allowNull: false
+  },
+  content: {
+    Sequelize.STRING,
+    allowNull:false
+  }
 }).then(function() {
   Entries.sync();
 });
