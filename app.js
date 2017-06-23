@@ -33,10 +33,9 @@ const Entries = sequelize.define('entries', {
     type: Sequelize.STRING,
     allowNull:false
   }
-}).then(function() {
-  Entries.sync();
 });
 
+Entries.sync();
 
 var bentries = ["no"];  //array for table contents, loaded with dummy value for bug reporting
 
