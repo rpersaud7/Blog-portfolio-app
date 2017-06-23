@@ -19,26 +19,18 @@ sequelize.authenticate().then(() => {
 });
 
 //create and initialize table if does not already exist
-if(SELECT to_regclass('entries') == null){
-  queryInterface.createTable('entries',
-  {
-    id: {
-      type: Sequelize.INTEGER,
-      autoIncrement: true,
-      primaryKey: true
-    },
-    title: Sequelize.STRING,
-    content: Sequelize.STRING
-  });
-}
+const Entries = sequelize.define('entries', {
+  id: {
+    type: Sequelize.INTEGER,
+    autoIncrement: true,
+    primaryKey: true
+  },
+  title: DataTypes.String,
+  content: DataTypes.String
+}).then(function() {
+  Entries.sync();
+});
 
-module.exports = (sequelize, DataTypes) => {
-  const Entries = sequelize.define('entries', {
-    title: DataTypes.String,
-    content: DataTypes.String
-  });
-  return Entries; 
-}
 
 var bentries = ["no"];  //array for table contents, loaded with dummy value for bug reporting
 
