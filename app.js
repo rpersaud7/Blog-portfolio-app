@@ -14,21 +14,24 @@ var conString = 'postgres://kzqhrhldmqirpk:c0b1526e53a0ba99ab0a5fc90231d99b553de
 const sequelize = new Sequelize(conString);
 sequelize.authenticate().then(() => {
   console.log('Connection has been established successfully.');
-  //create and initialize table if does not already exist
-  Entries= sequelize.define('entries',
-  {
-    id: {
-      type: Sequelize.INTEGER,
-      autoIncrement: true,
-      primaryKey: true
-    },
-    title: Sequelize.STRING,
-    content: Sequelize.STRING
-  });
 })
 .catch(err => {
   console.error('Unable to connect to the database:', err);
 });
+
+module.exports = function(sequelize, DataTypes) {
+  //create and initialize table if does not already exist
+  return Entries= sequelize.define('entries',
+    {
+      id: {
+        type: Sequelize.INTEGER,
+        autoIncrement: true,
+        primaryKey: true
+      },
+      title: Sequelize.STRING,
+      content: Sequelize.STRING
+    });
+}
 
 var bentries = ["no"];  //array for table contents, loaded with dummy value for bug reporting
 
