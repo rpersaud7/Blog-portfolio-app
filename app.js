@@ -18,19 +18,27 @@ sequelize.authenticate().then(() => {
   console.error('Unable to connect to the database:', err);
 });
 
-  //create and initialize table if does not already exist
-  if(SELECT to_regclass('entries') == null){
+//create and initialize table if does not already exist
+if(SELECT to_regclass('entries') == null){
   queryInterface.createTable('entries',
-    {
-      id: {
-        type: Sequelize.INTEGER,
-        autoIncrement: true,
-        primaryKey: true
-      },
-      title: Sequelize.STRING,
-      content: Sequelize.STRING
-    });
-  }
+  {
+    id: {
+      type: Sequelize.INTEGER,
+      autoIncrement: true,
+      primaryKey: true
+    },
+    title: Sequelize.STRING,
+    content: Sequelize.STRING
+  });
+}
+
+module.exports = (sequelize, DataTypes) => {
+  const Entries = sequelize.define('entries', {
+    title: DataTypes.String,
+    content: DataTypes.String
+  });
+  return Entries; 
+}
 
 var bentries = ["no"];  //array for table contents, loaded with dummy value for bug reporting
 
@@ -57,7 +65,7 @@ app.get('/portfolio', function(req, res){
 
 app.get('/blog', function(req, res){
   Entries.findAll().then(entries => {
-      res.render('blog', {entries});
+    res.render('blog', {entries});
   });
 });
 
@@ -101,7 +109,7 @@ function closeNav() {
 //     data: entries,
 //     method: 'POST'
 //   }).then(function(response){
-  //   //do stuff with response
-  //   $('body').append(response);
-  // });
+//   //do stuff with response
+//   $('body').append(response);
+// });
 // });
