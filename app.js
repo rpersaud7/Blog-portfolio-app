@@ -26,11 +26,11 @@ const Entries = sequelize.define('entries', {
     primaryKey: true
   },
   title: {
-    Sequelize.STRING,
+    type: Sequelize.STRING,
     allowNull: false
   },
   content: {
-    Sequelize.STRING,
+    type: Sequelize.STRING,
     allowNull:false
   }
 }).then(function() {
