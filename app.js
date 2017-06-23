@@ -8,9 +8,9 @@ app.use(bodyParser.urlencoded({
   extended:true
 }));
 
-
+var conString = 'postgres://kzqhrhldmqirpk:c0b1526e53a0ba99ab0a5fc90231d99b553debb8da78e02d36e84e5cde0564e6@ec2-54-221-254-72.compute-1.amazonaws.com:5432/d7h1jccq0bmh0f';
 //initialize connection with sequelize then test connection, notify through console success/fail
-const sequelize = new Sequelize('postgres://postgres:1029384756@localhost:5432/blogpost');
+const sequelize = new Sequelize(conString);
 sequelize.authenticate().then(() => {
   console.log('Connection has been established successfully.');
 })
