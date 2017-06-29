@@ -15,69 +15,70 @@
 
   <button class="menubutton" onclick="openNav()">Menu</button>
 
-  <div class="container-fluid">
-  <div class="center">
-    <form action="/blog" method="post">
-      Title:<br>
-      <input id="title" type="text" name="title"><br>
-      Content:<br>
-      <input id="content" type="text" name="content"><br>
-      <input id="submit" type="submit" value="Post">
-    </form>
-  <div class="center">
-  </div>
-
-  <% entries.forEach(function(entries) { %>
-      <div class="container">
-        <div class="panel panel-primary">
-          <div class="panel-heading"><h2><%= entries.title  %></h2></div>
-          <div class="panel-body">
-            <p><strong><%= entries.content %></strong></p>
-          </div>
-        </div>
-      </div>
-  <% }); %>
-
-</body>
-<!-- =======
-<link href="style.css" rel="stylesheet" type="text/css">
-<link href = "//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel = "stylesheet">
-<script src="app.js"></script>
-<script src = "https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script src = "//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-<title>Home</title>
-<body class="bluebg">
-
-  <div id="mySidenav" class="sidenav">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a href="/home">Home</a>
-    <a href="/portfolio">Portfolio</a>
-  </div>
-
-  <button class="menubutton" onclick="openNav()">Menu</button>
-
   <div class="container">
-  <div class="center">
-    <form action="/blog" method="post">
-      Title:<br>
-      <input id="title" type="text" name="title"><br>
-      Content:<br>
-      <input id="content" type="text" name="content"><br>
-      <input id="submit" type="submit" value="Post">
-    </form>
-  <div class="center">
-  </div>
+    <div class="center">
+      <form action="/blog" method="post">
+        Title:<br>
+        <input id="title" type="text" name="title"><br>
+        Content:<br>
+        <input id="content" type="text" name="content"><br>
+        <input id="submit" type="submit" value="Post">
+      </form>
+      <div class="center">
+      </div>
 
-  <% entries.forEach(function(entries) { %>
-      <div class="container">
-        <div class="panel panel-primary">
-          <div class="panel-heading"><h2><%= entries.title  %></h2></div>
-          <div class="panel-body">
-            <p><strong><%= entries.content %></strong></p>
+      <%entries.forEach(function(entries) { %>
+        <div class="container">
+          <div class="panel panel-primary">
+            <div class="panel-heading"><h2><%= entries.title  %></h2></div>
+            <div class="panel-body"><p><strong><%= entries.content %></strong></p></div>
+            <form action="deletePost(entries.title)">
+            <div class="panel-footer"><button type="Submit" class="btn-sm">Delete</button></div>
+          </form>
           </div>
         </div>
-      </div>
-  <% }); %>
+      <% }); %>
+
+      </body>
+      <!-- =======
+      <link href="style.css" rel="stylesheet" type="text/css">
+      <link href = "//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel = "stylesheet">
+      <script src="app.js"></script>
+      <script src = "https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+      <script src = "//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+      <title>Home</title>
+      <body class="bluebg">
+
+      <div id="mySidenav" class="sidenav">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      <a href="/home">Home</a>
+      <a href="/portfolio">Portfolio</a>
+    </div>
+
+    <button class="menubutton" onclick="openNav()">Menu</button>
+
+    <div class="container">
+    <div class="center">
+    <form action="/blog" method="post">
+    Title:<br>
+    <input id="title" type="text" name="title"><br>
+    Content:<br>
+    <input id="content" type="text" name="content"><br>
+    <input id="submit" type="submit" value="Post">
+  </form>
+  <div class="center">
+</div>
+
+<% entries.forEach(function(entries) { %>
+<div class="container">
+<div class="panel panel-primary">
+<div class="panel-heading"><h2><%= entries.title  %></h2></div>
+<div class="panel-body">
+<p><strong><%= entries.content %></strong></p>
+</div>
+</div>
+</div>
+<% }); %>
 
 </body>
 >>>>>>> 71684e490c6d42b0dd76ef64d538692861cef8fd -->

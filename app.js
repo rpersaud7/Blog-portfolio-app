@@ -100,6 +100,10 @@ function closeNav() {
   document.getElementById("mySidenav").style.width = "0";
 }
 
+function deletePost(value){
+  entries.find(value) = null;
+}
+
 // $('#submit').on('submit', function(event) {
 //   event.preventDefault();
 //   $.ajax({
