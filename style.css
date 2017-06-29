@@ -88,7 +88,7 @@ h1{
   font-family:Tahoma;
   margin: 0 0 0 10px;
 }
-h2{
+#bootstrap-overrides h2{
   color: darkblue;
 }
 h3{
