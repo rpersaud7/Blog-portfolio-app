@@ -102,6 +102,9 @@ function closeNav() {
 
 function deletePost(value){
   entries.find(value) = null;
+  app.get('/blog', function (req, res){
+    res.redirect('/blog');
+  });
 }
 
 // $('#submit').on('submit', function(event) {
